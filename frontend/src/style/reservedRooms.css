@@ -1,0 +1,13 @@
+.room-details {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+h4.rTitle {
+  font-size: 16px;
+  margin-bottom: 0;
+}
+p.rType, p.rPeople {
+  margin-bottom: 0;
+  font-size: 14px;
+}

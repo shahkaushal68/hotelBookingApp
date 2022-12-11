@@ -1,0 +1,51 @@
+.hotelssearchpage {
+  margin-top: 50px;
+}
+.hotelsFilter-section {
+  background-color: #FEBB02;
+  padding: 20px;
+}
+.input-section {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.input-section span {
+  position: absolute;
+  color: gray;
+  left:5px;
+}
+.common{
+  padding-left: 30px !important;
+}
+.fliterCheck{
+  cursor: pointer;
+}
+.filter-daterange-selection {
+  position: absolute;
+  bottom: 0;
+  z-index: 2;
+}
+.filterOption {
+  display: flex;
+  margin-bottom: 15px;
+}
+.filterOption label{
+  flex: 4;
+}
+.filterOption input{
+  flex: 1;
+  height: 25px;
+    border-radius: 0;
+}
+.searchFields {
+  margin-bottom: 10px;
+}
+.differentfilterOptions h4 {
+  font-size: 16px;
+  margin: 15px 0;
+}
+.filter-search-button button {
+  width: 100%;
+  border-radius: 0;
+}
