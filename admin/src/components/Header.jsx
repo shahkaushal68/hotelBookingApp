@@ -1,10 +1,22 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { auth } from "../context/AuthContext";
 import "../style/header.scss";
 
 const Header = ({ setNavOpen }) => {
+  const { dispatch } = useContext(auth);
+  const navigate = useNavigate();
+
   const handleOpen = () => {
     setNavOpen((prev) => !prev);
+  };
+
+  const handleLogout = () => {
+    dispatch({
+      type: "LOGOUT",
+    });
+    localStorage.removeItem("user");
+    navigate("/login");
   };
 
   return (
@@ -27,9 +39,13 @@ const Header = ({ setNavOpen }) => {
       />
       <div className="navbar-nav">
         <div className="nav-item text-nowrap">
-          <Link className="nav-link px-3" to="/">
+          <button
+            className="nav-link px-3 btn btn-ligh"
+            type="button"
+            onClick={handleLogout}
+          >
             Sign out
-          </Link>
+          </button>
         </div>
       </div>
     </header>

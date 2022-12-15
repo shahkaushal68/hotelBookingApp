@@ -41,8 +41,8 @@ const Login = () => {
         type: "LOGIN_SUCCESS",
         payload: resp.data,
       });
-      localStorage.setItem("user", JSON.stringify(resp.data));
-      navigate("/");
+      //localStorage.setItem("user", JSON.stringify(resp.data));
+      //navigate("/");
     } catch (error) {
       //console.log("error", error.response.data);
       dispatch({

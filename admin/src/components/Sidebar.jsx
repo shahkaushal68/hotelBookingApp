@@ -22,24 +22,24 @@ const Sidebar = ({ navOpen }) => {
             </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/">
+            <Link className="nav-link" to="/users">
               <span data-feather="file" className="align-text-bottom"></span>
-              Orders
+              Users
             </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/">
+            <Link className="nav-link" to="/hotels">
               <span
                 data-feather="shopping-cart"
                 className="align-text-bottom"
               ></span>
-              Products
+              Hotels
             </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/">
+            <Link className="nav-link" to="/rooms">
               <span data-feather="users" className="align-text-bottom"></span>
-              Customers
+              Rooms
             </Link>
           </li>
           <li className="nav-item">
@@ -106,11 +106,6 @@ const Sidebar = ({ navOpen }) => {
             </Link>
           </li>
         </ul>
-        <div className="nav-bottom">
-          <div className="colorOptions"></div>
-          <div className="colorOptions"></div>
-          <div className="colorOptions"></div>
-        </div>
       </div>
     </nav>
   );

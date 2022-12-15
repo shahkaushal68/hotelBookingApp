@@ -5,13 +5,12 @@ import jwt from "jsonwebtoken";
 export const register = async (req, res) => {
   const hashPassword = await bcrypt.hash(req.body.password, 10);
   const newUser = new User({
-    username: req.body.username,
-    email: req.body.email,
+    ...req.body,
     password: hashPassword,
   });
-  const { username, email, password } = req.body;
+  const { username, email, password, country, city, phone } = req.body;
   try {
-    if (!username || !email || !password)
+    if (!username || !email || !password || !country || !city || !phone)
       return res.status(400).json("All Fields are required!");
 
     const userName = await User.findOne({ username: req.body.username });
@@ -23,6 +22,7 @@ export const register = async (req, res) => {
       return res.status(500).json("This email is already register");
 
     const user = await newUser.save();
+
     res.status(200).json(user);
   } catch (error) {
     res.status(500).json(error);
@@ -47,11 +47,8 @@ export const login = async (req, res) => {
         { id: user._id, isAdmin: user.isAdmin },
         process.env.JWT_SECRETE_KEY
       );
-      const { password, isAdmin, ...otherDetails } = user._doc;
-      res
-        .cookie("access_cookie", token)
-        .status(200)
-        .json({ ...otherDetails });
+      const { password, ...otherDetails } = user._doc;
+      res.status(201).json({ ...otherDetails, token });
     }
   } catch (error) {
     res.status(500).json(error);

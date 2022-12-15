@@ -1,7 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import cookieParser from "cookie-parser";
+//import cookieParser from "cookie-parser";
 import cors from "cors";
 const app = express();
 dotenv.config();
@@ -12,7 +12,7 @@ import roomRouter from "./routes/roomRoute.js";
 
 //------------Global Middlewares--------------------
 app.use(express.json());
-app.use(cookieParser());
+//app.use(cookieParser());
 app.use(cors());
 
 const port = process.env.PORT || 4000; // define Port where run all api

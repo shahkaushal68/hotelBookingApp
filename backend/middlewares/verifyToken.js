@@ -1,14 +1,24 @@
 import jwt from "jsonwebtoken";
 
 export const validToken = (req, res, next) => {
-  const token = req.cookies.access_cookie;
-  if (!token) return res.status(500).json("You are not authnicated!");
+  let token = req.header("Authorization");
 
-  jwt.verify(token, process.env.JWT_SECRETE_KEY, function (err, decoded) {
-    if (err) return res.status(403).json("Invaid Token");
-    req.user = decoded;
-    next();
-  });
+  if (token?.startsWith("Bearer ")) {
+    // Remove Bearer from string
+    token = token.slice(7, token.length).trimLeft();
+    if (token) {
+      jwt.verify(token, process.env.JWT_SECRETE_KEY, function (err, decoded) {
+        if (err) return res.status(401).json("Token is Invalid");
+        if (decoded) {
+          //console.log(decoded);
+          req.user = decoded;
+          next();
+        }
+      });
+    }
+  } else {
+    return res.status(401).json("You are not authnticated");
+  }
 };
 
 export const verifyTokenAndUser = (req, res, next) => {

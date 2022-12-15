@@ -1,26 +1,14 @@
 import axios from "axios";
-import React from "react";
-import { useContext } from "react";
-//import { useContext } from "react";
-import { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../context/AuthContext";
 
-import "../style/login.scss";
-
-const Login = () => {
+const Register = () => {
   const [userData, setUserData] = useState({
+    username: "",
     email: "",
     password: "",
   });
-  const navigate = useNavigate();
-
-  const {
-    dispatch,
-    state: { loading, error },
-  } = useContext(auth);
-
-  //console.log("user", user);
 
   const handleChange = (e) => {
     setUserData({
@@ -29,34 +17,34 @@ const Login = () => {
     });
   };
 
+  const {
+    dispatch,
+    state: { error, loading },
+  } = useContext(auth);
+  const navigate = useNavigate();
+  //console.log("state", user);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch({
-      type: "LOGIN_START",
+      type: "REGISTER_START",
     });
     try {
-      const result = await axios.post(
-        `${process.env.REACT_APP_API_URI}/auth/login`,
+      const resp = await axios.post(
+        `${process.env.REACT_APP_API_URI}/auth/register`,
         userData
       );
-      //console.log("result", result);
-      if (result.data.isAdmin) {
-        dispatch({
-          type: "LOGIN_SUCCESS",
-          payload: result.data,
-        });
-        localStorage.setItem("user", JSON.stringify(result.data));
-        navigate("/");
-      } else {
-        dispatch({
-          type: "LOGIN_FAIL",
-          payload: "Only admin user can allowed!",
-        });
-      }
-    } catch (error) {
-      //console.log("login Error", error.response.data);
+      //console.log("resp", resp.data);
       dispatch({
-        type: "LOGIN_FAIL",
+        type: "REGISTER_SUCCESS",
+        payload: resp.data,
+      });
+      //localStorage.setItem("user", JSON.stringify(resp.data));
+      navigate("/login");
+    } catch (error) {
+      //console.log("error", error);
+      dispatch({
+        type: "REGISTER_FAIL",
         payload: error.response.data,
       });
     }
@@ -68,12 +56,25 @@ const Login = () => {
         <div className="col-lg-4 col-md-6 col-sm-6">
           <div className="card shadow">
             <div className="card-title text-center border-bottom">
-              <h2 className="p-3">Login</h2>
+              <h2 className="p-3">Register</h2>
             </div>
             <div className="card-body">
               <form onSubmit={handleSubmit}>
                 <div className="mb-4">
                   <label htmlFor="username" className="form-label">
+                    Username<span style={{ color: "red" }}>*</span>
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="username"
+                    name="username"
+                    value={userData.username}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="mb-4">
+                  <label htmlFor="email" className="form-label">
                     Email<span style={{ color: "red" }}>*</span>
                   </label>
                   <input
@@ -105,7 +106,7 @@ const Login = () => {
                     disabled={loading}
                     className="btn bg-primary"
                   >
-                    Login
+                    Register
                   </button>
                 </div>
               </form>
@@ -115,7 +116,7 @@ const Login = () => {
             </div>
 
             <p style={{ textAlign: "center" }}>
-              Not Register! <Link to="/register">Register</Link> First
+              Already Register! Go to <Link to="/login">Login</Link>
             </p>
           </div>
         </div>
@@ -124,4 +125,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;

@@ -1,76 +1,89 @@
 export const userInputs = [
   {
-    id: 1,
+    name: "username",
     label: "Username",
     type: "text",
     placeholder: "john_doe",
   },
   {
-    id: 2,
-    label: "Name and surname",
-    type: "text",
-    placeholder: "John Doe",
-  },
-  {
-    id: 3,
+    name: "email",
     label: "Email",
-    type: "mail",
+    type: "email",
     placeholder: "john_doe@gmail.com",
   },
   {
-    id: 4,
+    name: "password",
+    label: "Password",
+    type: "text",
+    placeholder: "Please Enter strong password",
+  },
+  {
+    name: "country",
+    label: "Country",
+    type: "text",
+    placeholder: "India",
+  },
+  {
+    name: "city",
+    label: "City",
+    type: "text",
+    placeholder: "Surat",
+  },
+  {
+    name: "phone",
     label: "Phone",
     type: "text",
     placeholder: "+1 234 567 89",
   },
-  {
-    id: 5,
-    label: "Password",
-    type: "password",
-  },
-  {
-    id: 6,
-    label: "Address",
-    type: "text",
-    placeholder: "Elton St. 216 NewYork",
-  },
-  {
-    id: 7,
-    label: "Country",
-    type: "text",
-    placeholder: "USA",
-  },
 ];
 
-export const productInputs = [
+export const hotelInputs = [
   {
-    id: 1,
+    name: "name",
+    label: "Name",
+    type: "text",
+    placeholder: "Hotel Name",
+  },
+  {
+    name: "type",
+    label: "Type",
+    type: "text",
+    placeholder: "Hotel type",
+  },
+  {
+    name: "city",
+    label: "City",
+    type: "text",
+    placeholder: "Yk",
+  },
+  {
+    name: "address",
+    label: "Address",
+    type: "text",
+    placeholder: "Near Airport",
+  },
+  {
+    name: "distance",
+    label: "Distance",
+    type: "text",
+    placeholder: "Distance from the city center",
+  },
+  {
+    name: "title",
     label: "Title",
     type: "text",
-    placeholder: "Apple Macbook Pro",
+    placeholder: "Hotel Name",
   },
   {
-    id: 2,
+    name: "description",
     label: "Description",
-    type: "text",
-    placeholder: "Description",
+    type: "textarea",
+    placeholder: "Hotel Description",
   },
   {
-    id: 3,
-    label: "Category",
-    type: "text",
-    placeholder: "Computers",
-  },
-  {
-    id: 4,
+    name: "cheapestPrice",
     label: "Price",
-    type: "text",
-    placeholder: "100",
-  },
-  {
-    id: 5,
-    label: "Stock",
-    type: "text",
-    placeholder: "in stock",
+    type: "number",
+    placeholder: "500",
   },
 ];
